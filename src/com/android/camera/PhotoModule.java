@@ -1656,12 +1656,13 @@ public class PhotoModule
                 }
                 return true;
             }
-            return false;
         case KeyEvent.KEYCODE_VOLUME_DOWN:
             if (mFirstTimeInitialized && event.getRepeatCount() == 0) {
                 // Only capture when in full screen capture mode
-                if (mActivity.isInCameraApp() && mShutterButton.getVisibility() == View.VISIBLE)
+                if (mActivity.isInCameraApp() && mShutterButton.getVisibility() == View.VISIBLE){
+		    onShutterButtonFocus(true);
                     onShutterButtonClick();
+		}
             }
             return true;
         case KeyEvent.KEYCODE_DPAD_CENTER:
@@ -1683,10 +1684,10 @@ public class PhotoModule
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-        case KeyEvent.KEYCODE_VOLUME_UP:
+//        case KeyEvent.KEYCODE_VOLUME_UP:
         case KeyEvent.KEYCODE_VOLUME_DOWN:
             return true;
-        case KeyEvent.KEYCODE_FOCUS:
+        case KeyEvent.KEYCODE_VOLUME_UP:
             if (mFirstTimeInitialized) {
                 onShutterButtonFocus(false);
             }

@@ -1257,7 +1257,13 @@ public class VideoModule implements CameraModule,
         }
 
         switch (keyCode) {
-            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                if (event.getRepeatCount() == 0) {
+                    mUI.clickShutter();
+                    return true;
+                }
+                break;
+	    case KeyEvent.KEYCODE_VOLUME_UP:
                 if (event.getRepeatCount() == 0) {
                     mUI.clickShutter();
                     return true;
@@ -1272,7 +1278,7 @@ public class VideoModule implements CameraModule,
             case KeyEvent.KEYCODE_MENU:
                 if (mMediaRecorderRecording) return true;
                 break;
-            case KeyEvent.KEYCODE_VOLUME_UP:
+/*            case KeyEvent.KEYCODE_VOLUME_UP:
                 if (mParameters.isZoomSupported()) {
                     int value = mZoomValue + 1;
                     int zoomMax = mParameters.getMaxZoom();
@@ -1282,7 +1288,8 @@ public class VideoModule implements CameraModule,
                     return true;
                 }
                 return false;
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
+*/
+/*            case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (mParameters.isZoomSupported()) {
                     int value = mZoomValue - 1;
                     if (value >= 0) {
@@ -1291,6 +1298,7 @@ public class VideoModule implements CameraModule,
                     return true;
                 }
                 return false;
+*/
         }
         return false;
     }
@@ -1299,12 +1307,15 @@ public class VideoModule implements CameraModule,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
+                mUI.pressShutter(false);
+                return true;
+
+            //case KeyEvent.KEYCODE_VOLUME_DOWN:
+//                if (mParameters.isZoomSupported()) {
+//                    return true;
+//                }
+//                return false;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                if (mParameters.isZoomSupported()) {
-                    return true;
-                }
-                return false;
-            case KeyEvent.KEYCODE_CAMERA:
                 mUI.pressShutter(false);
                 return true;
         }
