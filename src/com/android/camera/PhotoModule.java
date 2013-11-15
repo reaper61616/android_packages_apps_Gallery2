@@ -1699,14 +1699,14 @@ public class PhotoModule
         case KeyEvent.KEYCODE_VOLUME_DOWN:
 	    y = false;
 	    x = false;
-	    onShutterButtonFocus(false);
+	    cancelAutoFocus();
             return true;
         case KeyEvent.KEYCODE_VOLUME_UP:
             if (mFirstTimeInitialized) {
 		x = false;
 		y = false;
             }
-	    onShutterButtonFocus(false);
+	    cancelAutoFocus();
             return true;
         }
         return false;
