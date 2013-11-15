@@ -1631,9 +1631,11 @@ public class PhotoModule
     public boolean onBackPressed() {
         return mUI.onBackPressed();
     }
-
+    boolean x = false;
+    boolean y = false;
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
         switch (keyCode) {
 /*        case KeyEvent.KEYCODE_VOLUME_UP:
             if (mActivity.isInCameraApp() && mFirstTimeInitialized
@@ -1652,7 +1654,12 @@ public class PhotoModule
             if (mActivity.isInCameraApp() && mFirstTimeInitialized &&
                   mShutterButton.getVisibility() == View.VISIBLE) {
                 if (event.getRepeatCount() == 0) {
-                    onShutterButtonFocus(true);
+		    if (y){
+			onShutterButtonClick();
+		    }else{
+            	        autoFocus();
+		        x = true;
+		    }
                 }
                 return true;
             }
@@ -1660,8 +1667,12 @@ public class PhotoModule
             if (mFirstTimeInitialized && event.getRepeatCount() == 0) {
                 // Only capture when in full screen capture mode
                 if (mActivity.isInCameraApp() && mShutterButton.getVisibility() == View.VISIBLE){
-		    onShutterButtonFocus(true);
-                    onShutterButtonClick();
+		    if (x){
+            		onShutterButtonClick();
+		    }else{
+			y = true;
+			autoFocus();
+		    }
 		}
             }
             return true;
@@ -1686,11 +1697,16 @@ public class PhotoModule
         switch (keyCode) {
 //        case KeyEvent.KEYCODE_VOLUME_UP:
         case KeyEvent.KEYCODE_VOLUME_DOWN:
+	    y = false;
+	    x = false;
+	    onShutterButtonFocus(false);
             return true;
         case KeyEvent.KEYCODE_VOLUME_UP:
             if (mFirstTimeInitialized) {
-                onShutterButtonFocus(false);
+		x = false;
+		y = false;
             }
+	    onShutterButtonFocus(false);
             return true;
         }
         return false;
