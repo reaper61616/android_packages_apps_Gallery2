@@ -1645,8 +1645,9 @@ public class PhotoModule
 		    if (y){
 			onShutterButtonClick();
 		    }else{
-            	        autoFocus();
 		        x = true;
+			cancelAutoFocus();
+            	        autoFocus();
 		    }
                 }
                 return true;
@@ -1659,6 +1660,7 @@ public class PhotoModule
             		onShutterButtonClick();
 		    }else{
 			y = true;
+			cancelAutoFocus();
 			autoFocus();
 		    }
 		}
