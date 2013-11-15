@@ -1637,19 +1637,7 @@ public class PhotoModule
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         switch (keyCode) {
-/*        case KeyEvent.KEYCODE_VOLUME_UP:
-            if (mActivity.isInCameraApp() && mFirstTimeInitialized
-                && (mUI.mMenuInitialized)) {
-                mUI.onScaleStepResize(true);
-            }
-            return true;
-        case KeyEvent.KEYCODE_VOLUME_DOWN:
-            if (mActivity.isInCameraApp() && mFirstTimeInitialized
-                && (mUI.mMenuInitialized)) {
-                mUI.onScaleStepResize(false);
-            }
-            return true;
-*/
+
         case KeyEvent.KEYCODE_VOLUME_UP:
             if (mActivity.isInCameraApp() && mFirstTimeInitialized &&
                   mShutterButton.getVisibility() == View.VISIBLE) {
@@ -1695,7 +1683,6 @@ public class PhotoModule
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-//        case KeyEvent.KEYCODE_VOLUME_UP:
         case KeyEvent.KEYCODE_VOLUME_DOWN:
 	    y = false;
 	    x = false;
